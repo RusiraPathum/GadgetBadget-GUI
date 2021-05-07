@@ -219,13 +219,13 @@ body {
 			</section>
 		</div>
 
-		<div class="container">
-			<h2 class="mb-5">All Project Details</h2>
+		<div class="ml-5">
+			<h2 class="mb-3">All Project Details</h2>
 		</div>
-		<div class="container col-12 mb-5" id="ProjectGrid">
+		<div class="col-12 mb-5" id="ProjectGrid">
 			<fieldset>
 				<form method="post" action="AddProject.jsp"
-					class="table table-striped">
+					class="table container-fluid table-striped">
 					<%
 					ProjectServlet viewProject = new ProjectServlet();
 					out.print(viewProject.readProjects());
