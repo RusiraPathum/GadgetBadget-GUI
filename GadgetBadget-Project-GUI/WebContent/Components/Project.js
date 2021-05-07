@@ -3,17 +3,17 @@ $(document).ready(function() {
 
 	$("#alertSuccess").hide();
 	$("#alertError").hide();
-	$("#hidProjectIDSave").val("");
+	$("#projectID").val("");
 	$("#PROJECT")[0].reset();
 });
 
 $(document).on("click", "#save_project", function(event) {
-	
+
 	$("#alertSuccess").text("");
 	$("#alertSuccess").hide();
 	$("#alertError").text("");
 	$("#alertError").hide();
-	
+
 	// Form validation-------------------
 	var status = validateItemForm();
 	if (status != true) {
@@ -21,54 +21,71 @@ $(document).on("click", "#save_project", function(event) {
 		$("#alertError").show();
 		return;
 	}
-	
-	var type = ($("#hidProjectIDSave").val() == "") ? "POST" : "PUT";
-	
+
+	var type = ($("#projectID").val() == "") ? "POST" : "PUT";
+
 	$.ajax({
-		url : "ProjectAPI",
-		type : type,
-		data : $("#PROJECT").serialize(),
-		dataType : "text",
-		complete : function(response, status) {
+		url: "ProjectAPI",
+		type: type,
+		data: $("#PROJECT").serialize(),
+		dataType: "text",
+		complete: function(response, status) {
 			onItemSaveComplete(response.responseText, status);
+
+			$("#alertSuccess").fadeTo(2000, 500).slideUp(500, function() {
+				$("#alertSuccess").slideUp(500);
+			});
 		}
 	});
-	
+
 });
 
 function onItemSaveComplete(response, status) {
-	
+
 	if (status == "success") {
-		
+
 		//console.log(response);
 		var resultSet = JSON.parse(response);
-		
+
 		if (resultSet.status.trim() == "success") {
-			
-			$("#alertSuccess").text("Successfully saved.");
+
+			$("#alertSuccess").text("Project Details Successfully saved.");
 			$("#alertSuccess").show();
 			$("#ProjectGrid").html(resultSet.data);
-			
+
 		} else if (resultSet.status.trim() == "error") {
-			
+
 			$("#alertError").text(resultSet.data);
 			$("#alertError").show();
 		}
-	} 
+	}
 	else if (status == "error") {
-		
+
 		$("#alertError").text("Error while saving.");
 		$("#alertError").show();
-		
+
 	} else {
-		
+
 		$("#alertError").text("Unknown error while saving..");
 		$("#alertError").show();
 	}
-	
-	$("#hidProjectIDSave").val("");
+
+	$("#projectID").val("");
 	$("#PROJECT")[0].reset();
 }
+
+$(document).on("click", ".btnUpdate", function(event) {
+	$("#hidProjectIDSave").val($(this).data("projectID"));
+	$("#projectID").val($(this).closest("tr").find('td:eq(0)').text());
+	$("#project_category").val($(this).closest("tr").find('td:eq(1)').text());
+	$("#project_name").val($(this).closest("tr").find('td:eq(2)').text());
+	$("#short_des").val($(this).closest("tr").find('td:eq(3)').text());
+	$("#price").val($(this).closest("tr").find('td:eq(4)').text());
+	$("#date").val($(this).closest("tr").find('td:eq(5)').text());
+	$("#project_goal").val($(this).closest("tr").find('td:eq(6)').text());
+	$("#long_des").val($(this).closest("tr").find('td:eq(7)').text());
+
+});
 
 function validateItemForm() {
 
@@ -99,8 +116,8 @@ function validateItemForm() {
 	if ($("#project_goal").val().trim() == "") {
 		return "Enter Project Goal.";
 	}
-	
-	if ($("#long_des").val().trim()  == "") {
+
+	if ($("#long_des").val().trim() == "") {
 		return "Enter Long Description.";
 	}
 	return true;

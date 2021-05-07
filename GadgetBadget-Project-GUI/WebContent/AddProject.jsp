@@ -25,7 +25,7 @@
 					<form class="row g-3 needs-validation" id="PROJECT" name="formItem"
 						novalidate>
 						<input hidden type="text" class="form-control"
-								id="pid" name="pid">
+								id="projectID" name="projectID">
 						<div class="col-md-12 mb-3">
 							<label for="validationCustom03" class="form-label">Select
 								Project Category</label> <select class="form-select form-control"
@@ -83,8 +83,8 @@
 							<button class="btn btn-primary float-right" id="save_project"
 								type="button">Save Project</button>
 
-							<input type="hidden" id="hidProjectIDSave"
-								name="hidProjectIDSave" value="">
+							<input type="hidden" id="projectID"
+								name="projectID" value="">
 						</div>
 					</form>
 
