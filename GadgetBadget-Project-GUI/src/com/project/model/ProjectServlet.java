@@ -78,8 +78,7 @@ public class ProjectServlet {
 				// buttons
 				
 				output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-success'></td>"
-						+ "<td><input name='btnRemove' id='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-itemid='"
-						+ projectID + "'>" + "</td></tbody>";
+						+ "<td><button class='btnRemove btn btn-danger' name='btnRemove' id ='btnRemove' value='"+ projectID +"' >Remove</button></td></tbody>";
 				
 			}
 			con.close();
@@ -205,8 +204,8 @@ public class ProjectServlet {
 				String query = "DELETE FROM project WHERE projectID=?";
 				PreparedStatement ps = con.prepareStatement(query);
 
-//				System.out.println(query);
-//				System.out.println(pid);
+				//System.out.println(query);
+				//System.out.println(projectID);
 
 				ps.setInt(1, Integer.parseInt(projectID));
 

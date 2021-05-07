@@ -7,6 +7,12 @@ $(document).ready(function() {
 	$("#PROJECT")[0].reset();
 });
 
+$(document).on("click", "#clear", function(event) {
+
+	$("#PROJECT")[0].reset();
+	$("#alertError").hide();
+});
+
 $(document).on("click", "#save_project", function(event) {
 
 	$("#alertSuccess").text("");
@@ -86,6 +92,55 @@ $(document).on("click", ".btnUpdate", function(event) {
 	$("#long_des").val($(this).closest("tr").find('td:eq(7)').text());
 
 });
+
+$(document).on("click", ".btnRemove", function(event) {
+
+
+	$.ajax({
+		url: "ProjectAPI",
+		type: "DELETE",
+		data: "projectID=" + event.target.value,
+		dataType: "text",
+		complete: function(response, status) {
+			onItemDeleteComplete(response.responseText, status);
+			//window.location.reload(true);
+			$("#alertSuccess").fadeTo(2000, 500).slideUp(500, function() {
+				$("#alertSuccess").slideUp(500);
+			});
+
+		}
+	});
+});
+
+function onItemDeleteComplete(response, status) {
+
+	if (status == "success") {
+
+		var resultSet = JSON.parse(response);
+
+		if (resultSet.status.trim() == "success") {
+
+			$("#alertSuccess").text("Project Details Successfully deleted.");
+			$("#alertSuccess").show();
+			$("#ProjectGrid").html(resultSet.data);
+
+		} else if (resultSet.status.trim() == "error") {
+
+			$("#alertError").text(resultSet.data);
+			$("#alertError").show();
+		}
+
+	} else if (status == "error") {
+
+		$("#alertError").text("Error while deleting.");
+		$("#alertError").show();
+
+	} else {
+
+		$("#alertError").text("Unknown error while deleting..");
+		$("#alertError").show();
+	}
+}
 
 function validateItemForm() {
 
