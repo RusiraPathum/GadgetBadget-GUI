@@ -27,7 +27,7 @@ $(document).on("click", "#save_project", function(event) {
 	$.ajax({
 		url : "ProjectAPI",
 		type : type,
-		data : $("#Project").serialize(),
+		data : $("#PROJECT").serialize(),
 		dataType : "text",
 		complete : function(response, status) {
 			onItemSaveComplete(response.responseText, status);
@@ -35,6 +35,40 @@ $(document).on("click", "#save_project", function(event) {
 	});
 	
 });
+
+function onItemSaveComplete(response, status) {
+	
+	if (status == "success") {
+		
+		//console.log(response);
+		var resultSet = JSON.parse(response);
+		
+		if (resultSet.status.trim() == "success") {
+			
+			$("#alertSuccess").text("Successfully saved.");
+			$("#alertSuccess").show();
+			$("#ProjectGrid").html(resultSet.data);
+			
+		} else if (resultSet.status.trim() == "error") {
+			
+			$("#alertError").text(resultSet.data);
+			$("#alertError").show();
+		}
+	} 
+	else if (status == "error") {
+		
+		$("#alertError").text("Error while saving.");
+		$("#alertError").show();
+		
+	} else {
+		
+		$("#alertError").text("Unknown error while saving..");
+		$("#alertError").show();
+	}
+	
+	$("#hidProjectIDSave").val("");
+	$("#PROJECT")[0].reset();
+}
 
 function validateItemForm() {
 
