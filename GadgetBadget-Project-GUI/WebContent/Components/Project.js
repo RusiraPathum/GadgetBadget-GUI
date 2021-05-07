@@ -172,7 +172,7 @@ function validateItemForm() {
 		return "Enter Project Goal.";
 	}
 
-	if ($("#long_des").val().trim() == "") {
+	if ($("#long_des").val() == "") {
 		return "Enter Long Description.";
 	}
 	return true;
