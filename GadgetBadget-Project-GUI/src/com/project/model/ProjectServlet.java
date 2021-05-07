@@ -33,7 +33,7 @@ public class ProjectServlet {
 			}
 			// Prepare the html table to be displayed
 
-			output = "<div class='container'><table class='table table-hover table-bordered table-striped table-bordered' style='width:100%' style='text-align:center'><thead class='thead-dark'>"
+			output = "<div class=''><table class='table table-hover table-bordered table-striped table-bordered' style='width:100%' style='text-align:center'><thead class='thead-dark'>"
 					+ "<th style='padding:10px; text-align:center;'>Project ID</th>"
 					+ "<th style='padding:10px; text-align:center;'>Project Category</th>"
 					+ "<th style='padding:10px; text-align:center;'>Project Name</th>"
