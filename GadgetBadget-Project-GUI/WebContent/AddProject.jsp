@@ -24,8 +24,8 @@
 					<h2 class="mb-5">Add Project Details</h2>
 					<form class="row g-3 needs-validation" id="PROJECT" name="formItem"
 						novalidate>
-						<input hidden type="text" class="form-control"
-								id="pid" name="pid">
+						<input hidden type="text" class="form-control" id="projectID"
+							name="projectID">
 						<div class="col-md-12 mb-3">
 							<label for="validationCustom03" class="form-label">Select
 								Project Category</label> <select class="form-select form-control"
@@ -73,18 +73,20 @@
 								class="md-textarea form-control" rows="5"
 								placeholder="Long Description"></textarea>
 						</div>
+
 						<div class="mt-3 ml-3">
 							<div id="alertSuccess" class="alert alert-success"></div>
 							<div id="alertError" class="alert alert-danger"></div>
 						</div>
 
 
-						<div class="col-12 mt-3 mb-5">
-							<button class="btn btn-primary float-right" id="save_project"
+						<div class="col-12 mt-3 mb-5 d-flex justify-content-end">
+							<button class="btn btn-primary mr-3" id="save_project"
 								type="button">Save Project</button>
+							<button class="btn btn-info" id="clear"
+								type="button">clear</button>
 
-							<input type="hidden" id="hidProjectIDSave"
-								name="hidProjectIDSave" value="">
+							<input type="hidden" id="projectID" name="projectID" value="">
 						</div>
 					</form>
 
@@ -93,15 +95,16 @@
 			</section>
 		</div>
 
+		<div class="container">
+			<h2 class="mb-5">All Project Details</h2>
+		</div>
 		<div class="container col-12" id="ProjectGrid">
 			<fieldset>
-				<h2 class="mb-5">All Project Details</h2>
-
 				<form method="post" action="AddProject.jsp"
 					class="table table-striped">
 					<%
-						ProjectServlet viewProject = new ProjectServlet();
-						out.print(viewProject.readProjects());
+					ProjectServlet viewProject = new ProjectServlet();
+					out.print(viewProject.readProjects());
 					%>
 				</form>
 				<br>
