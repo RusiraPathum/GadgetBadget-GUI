@@ -14,7 +14,6 @@ public class ProjectServlet {
 
 			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/gb_fornt_end", "root", "");
 
-			System.out.println("Connection succsessfull");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
