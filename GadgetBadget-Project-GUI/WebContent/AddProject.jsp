@@ -208,7 +208,7 @@ body {
 						<div class="col-12 mt-3 mb-5 d-flex justify-content-end">
 							<button class="btn btn-primary mr-3" id="save_project"
 								type="button">Save Project</button>
-							<button class="btn btn-info" id="clear" type="button">clear</button>
+							<button class="btn btn-warning" id="clear" type="button">clear</button>
 
 							<input type="hidden" id="projectID" name="projectID" value="">
 						</div>
@@ -220,9 +220,9 @@ body {
 		</div>
 
 		<div class="ml-5">
-			<h2 class="mb-3">All Project Details</h2>
+			<h2 class="mb-3 ml-3">All Project Details</h2>
 		</div>
-		<div class="col-12 mb-5" id="ProjectGrid">
+		<div class="col-12 mb-5 pl-5 pr-5" id="ProjectGrid">
 			<fieldset>
 				<form method="post" action="AddProject.jsp"
 					class="table container-fluid table-striped">
